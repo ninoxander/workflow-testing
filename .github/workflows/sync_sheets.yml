@@ -1,0 +1,33 @@
+name: Sync Google Sheets
+
+on:
+  schedule:
+    - cron: "0 * * * *"  # Cada hora
+  workflow_dispatch:  # Ejecución manual
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: |
+          pip install pandas tabulate
+
+      - name: Download Google Sheets CSV
+        run: |
+          curl -o ./data.csv "https://docs.google.com/spreadsheets/d/1aw_0ds03qzbpg3P8x9hznfsHzW1BhVqfwMOkun7VhAg/export?format=csv"
+
+      - name: Update README
+        run: |
+          python ./workflow/update_readme.py
+
+      - name: Commit changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update API Coverage from Google Sheets" || echo "No changes to commit"
+          git push
