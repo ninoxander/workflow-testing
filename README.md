@@ -6,4 +6,5 @@ Actualizando la tabla de cobertura de pruebas desde sheet.
 |:-----------|:-------|:-------|:---------|:---------|
 | Users      | Basic  | Full   | Basic    | Full     |
 | Registers  | Medium | Medium | Full     | Medium   |
+| Pets       | Basic  | Full   | Full     | Basic    |
 <!-- END_TABLE -->
