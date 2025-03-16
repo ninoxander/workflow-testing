@@ -1,15 +1,12 @@
-### API Coverage
-Based on Bruno Docs
+### Cobertura de pruebas en la API
 
-## API Coverage Report
+| ENDPOINT   | GET    | POST   | DELETE   | UPDATE   | % Coverage                        |
+|------------|--------|--------|----------|----------|-----------------------------------|
+| Users      | Basic  | Full   | Basic    | Full     | ![](https://geps.dev/progress/62) |
+| Registers  | Medium | Medium | Full     | Medium   | ![](https://geps.dev/progress/62) |
+| Pets       | Basic  | Full   | Full     | Basic    | ![](https://geps.dev/progress/62) |
 
-Actualizando la tabla de cobertura de pruebas desde sheet.
-<!-- START_TABLE -->
-| ENDPOINT   | GET    | POST   | DELETE   | UPDATE   |   % Coverage |
-|:-----------|:-------|:-------|:---------|:---------|-------------:|
-| Users      | Basic  | Full   | Basic    | Full     |         62.5 |
-| Registers  | Medium | Medium | Full     | Medium   |         62.5 |
-| Pets       | Basic  | Full   | Full     | Basic    |         62.5 |
+Cobertura total  
+![](https://geps.dev/progress/62)
 
-**Total Coverage: 62.5%**
-<!-- END_TABLE -->
+Última actualización 16/03/2025
