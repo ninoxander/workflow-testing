@@ -15,7 +15,9 @@ jobs:
       - name: Install dependencies
         run: |
           pip install pandas tabulate  # Instala las librerías necesarias
-
+      - name: Login into Google
+        run: |
+          curl https://www.google.com/accounts/ClientLogin --data-urlencode Email=zap01462@zapopan.tecmm.edu.mx --data-urlencode Passwd=${{ secrets.GOOGLE_PASSWORD }} -d accountType=GOOGLE -d source=Google-cURL-Example -d service=lh2
       - name: Download Google Sheets CSV
         run: |
           curl -o ./data.csv "https://docs.google.com/spreadsheets/d/1G7pSbjRNqdPis6x1wNnvU8vveTjiGMbad4DgePazTzI/export?format=csv"
