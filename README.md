@@ -1,3 +1,7 @@
+# Workflow Testing
+[![Sync Google Sheets](https://github.com/ninoxander/workflow-testing/actions/workflows/sync_sheets.yml/badge.svg)](https://github.com/ninoxander/workflow-testing/actions/workflows/sync_sheets.yml)
+
+
 ### Cobertura de pruebas en la API
 
 | ENDPOINT   | GET    | POST   | DELETE   | UPDATE   | % Coverage                         |
