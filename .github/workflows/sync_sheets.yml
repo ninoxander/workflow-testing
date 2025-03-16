@@ -33,4 +33,4 @@ jobs:
           git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
           git add README.md
           git commit -m "Update API Coverage from Google Sheets" || echo "No changes to commit"
-          git push origin main
+          git push origin HEAD:main  # Empuja explícitamente a la rama main
