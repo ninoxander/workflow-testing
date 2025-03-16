@@ -25,9 +25,6 @@ df["% Coverage"] = df_numeric[coverage_columns].mean(axis=1).round(2)
 
 total_coverage = df["% Coverage"].mean().round(2)
 
-total_row = pd.DataFrame([["Total Coverage"] + [""] * (len(df.columns) - 2) + [total_coverage]], columns=df.columns)
-df = pd.concat([df, total_row], ignore_index=True)
-
 markdown_table = df.to_markdown(index=False)
 
 with open(readme_path, "r") as file:
@@ -35,9 +32,11 @@ with open(readme_path, "r") as file:
 
 start = readme.index("<!-- START_TABLE -->\n") + 1
 end = readme.index("<!-- END_TABLE -->\n")
-readme[start:end] = [markdown_table + "\n"]
+readme[start:end] = [markdown_table + "\n\n**Total Coverage: {}%**\n".format(total_coverage)]
 
 with open(readme_path, "w") as file:
+    file.write("### API Coverage\n")
+    file.write("Based on Bruno Docs\n\n")
     file.writelines(readme)
 
 print("README actualizado con los datos de data.csv")
