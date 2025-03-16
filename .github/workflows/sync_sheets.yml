@@ -2,8 +2,8 @@ name: Sync Google Sheets
 
 on:
   schedule:
-    - cron: "0 * * * *"  # Cada hora
-  workflow_dispatch:  # Ejecución manual
+    - cron: "0 * * * *"  # Ejecuta cada hora
+  workflow_dispatch:  # Permite ejecución manual
 
 jobs:
   update-readme:
@@ -14,7 +14,7 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install pandas tabulate
+          pip install pandas tabulate  # Instala las librerías necesarias
 
       - name: Download Google Sheets CSV
         run: |
@@ -25,9 +25,12 @@ jobs:
           python ./workflow/update_readme.py
 
       - name: Commit changes
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
           git add README.md
           git commit -m "Update API Coverage from Google Sheets" || echo "No changes to commit"
-          git push
+          git push origin main
