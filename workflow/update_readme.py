@@ -1,5 +1,7 @@
 import pandas as pd
 import os
+import math
+from datetime import datetime
 
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  
 csv_path = os.path.join(base_dir, "data.csv")
@@ -21,22 +23,27 @@ df_numeric = df.copy()
 for col in coverage_columns:
     df_numeric[col] = df[col].map(convert_to_numeric)
 
-df["% Coverage"] = df_numeric[coverage_columns].mean(axis=1).round(2)
+df["% Coverage"] = df_numeric[coverage_columns].mean(axis=1)
 
-total_coverage = df["% Coverage"].mean().round(2)
+df["% Coverage"] = df["% Coverage"].apply(lambda x: f'![](https://geps.dev/progress/{math.floor(x)})')
 
-markdown_table = df.to_markdown(index=False)
+total_coverage = math.floor(df_numeric[coverage_columns].mean().mean())
 
-with open(readme_path, "r") as file:
-    readme = file.readlines()
+current_date = datetime.now().strftime("%d/%m/%Y")
 
-start = readme.index("<!-- START_TABLE -->\n") + 1
-end = readme.index("<!-- END_TABLE -->\n")
-readme[start:end] = [markdown_table + "\n\n**Total Coverage: {}%**\n".format(total_coverage)]
+markdown_table = df.to_markdown(index=False, tablefmt="github")
+
+readme_content = f"""### Cobertura de pruebas en la API
+
+{markdown_table}
+
+Cobertura total  
+![](https://geps.dev/progress/{total_coverage})
+
+Última actualización {current_date}
+"""
 
 with open(readme_path, "w") as file:
-    file.write("### API Coverage\n")
-    file.write("Based on Bruno Docs\n\n")
-    file.writelines(readme)
+    file.write(readme_content)
 
 print("README actualizado con los datos de data.csv")
