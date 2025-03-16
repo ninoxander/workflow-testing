@@ -18,7 +18,7 @@ jobs:
 
       - name: Download Google Sheets CSV
         run: |
-          curl -o ./data.csv "https://docs.google.com/spreadsheets/d/1aw_0ds03qzbpg3P8x9hznfsHzW1BhVqfwMOkun7VhAg/export?format=csv"
+          curl -o ./data.csv "https://docs.google.com/spreadsheets/d/14y09SAEHmUsv-J_ycavN7OL53hBxjqNJ6Dh1Cd7svjM/export?format=csv"
 
       - name: Update README
         run: |
