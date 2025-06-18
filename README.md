@@ -10,4 +10,4 @@
 Cobertura total  
 ![](https://geps.dev/progress/70)
 
-Última actualización 17/06/2025
+Última actualización 18/06/2025
